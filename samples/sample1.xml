@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<shopping-list>
+  <item>eggs</item>
+  <!-- <item>steaks</item> -->
+  <item urgent="">shampoo</item>
+  <item />
+</shopping-list>
