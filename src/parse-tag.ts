@@ -1,4 +1,4 @@
-import NodeKind from "$/constants/NodeKind.ts";
+import NodeKinds from "$/constants/NodeKinds.ts";
 import type { OrphanTagNode, RegularTagNode } from "$/types.ts";
 
 const tagNameRegex = /^\S+/;
@@ -23,7 +23,7 @@ function parseAttributes(attrString: string): Record<string, string> {
 export function parseOpeningTag(value: string): RegularTagNode {
   const [tagName, attrString] = splitTag(value);
   const node: RegularTagNode = {
-    kind: NodeKind.RegularTag,
+    kind: NodeKinds.RegularTag,
     tagName,
     children: []
   };
@@ -37,7 +37,7 @@ export function parseOpeningTag(value: string): RegularTagNode {
 export function parseOrphanTag(value: string, isDeclaration: boolean): OrphanTagNode {
   const [tagName, attrString] = splitTag(value);
   const node: OrphanTagNode = {
-    kind: NodeKind.OrphanTag,
+    kind: NodeKinds.OrphanTag,
     tagName,
     isDeclaration
   };

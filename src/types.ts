@@ -1,5 +1,5 @@
+import type NodeKinds from "$/constants/NodeKinds.ts";
 import type TokenKind from "$/constants/TokenKind.ts";
-import type NodeKind from "$/constants/NodeKind.ts";
 
 // ===== ===== ===== ===== =====
 // TOKEN
@@ -46,12 +46,16 @@ interface TagNode {
  * An opening tag with its attributes and child nodes.
  */
 export interface RegularTagNode extends TagNode {
-  kind: NodeKind.RegularTag;
+  kind: typeof NodeKinds.RegularTag;
   children: XmlNode[];
 }
 
+/**
+ * Represents a self-closing element.
+ * It can be an XML declaration.
+ */
 export interface OrphanTagNode extends TagNode {
-  kind: NodeKind.OrphanTag;
+  kind: typeof NodeKinds.OrphanTag;
   isDeclaration: boolean;
 }
 
@@ -59,12 +63,15 @@ export interface OrphanTagNode extends TagNode {
  * Represents text found between matching tags.
  */
 export interface TextNode {
-  kind: NodeKind.Text;
+  kind: typeof NodeKinds.Text;
   value: string;
 }
 
+/**
+ * Represents text found between `<!-- -->`.
+ */
 export interface CommentNode {
-  kind: NodeKind.Comment;
+  kind: typeof NodeKinds.Comment;
   value: string;
 }
 
@@ -72,7 +79,7 @@ export interface CommentNode {
  * An invalid node such as a lone '>'.
  */
 export interface BadNode {
-  kind: NodeKind.Bad;
+  kind: typeof NodeKinds.Bad;
   value: string;
   position: Position;
 }

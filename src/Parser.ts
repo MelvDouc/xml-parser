@@ -1,4 +1,4 @@
-import NodeKind from "$/constants/NodeKind.ts";
+import NodeKinds from "$/constants/NodeKinds.ts";
 import TokenKind from "$/constants/TokenKind.ts";
 import Lexer from "$/Lexer.ts";
 import { parseOpeningTag, parseOrphanTag } from "$/parse-tag.ts";
@@ -21,7 +21,7 @@ export default class Parser {
   public parse(): XmlNode[] {
     const stack: RegularTagNode[] = [
       {
-        kind: NodeKind.RegularTag,
+        kind: NodeKinds.RegularTag,
         tagName: "",
         children: []
       }
@@ -31,13 +31,13 @@ export default class Parser {
     for (const token of this.tokens) {
       switch (token.kind) {
         case TokenKind.Bad:
-          parent.children.push({ ...token, kind: NodeKind.Bad });
+          parent.children.push({ ...token, kind: NodeKinds.Bad });
           break;
         case TokenKind.Text:
           this.handleTextToken(token, parent);
           break;
         case TokenKind.Comment:
-          parent.children.push({ kind: NodeKind.Comment, value: token.value });
+          parent.children.push({ kind: NodeKinds.Comment, value: token.value });
           break;
         case TokenKind.OrphanTag:
           this.handleOrphan(token, parent, false);
@@ -98,6 +98,6 @@ export default class Parser {
     const value = token.value.trim();
 
     if (value)
-      parent.children.push({ kind: NodeKind.Text, value });
+      parent.children.push({ kind: NodeKinds.Text, value });
   }
 }

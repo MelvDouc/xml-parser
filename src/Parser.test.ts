@@ -1,7 +1,7 @@
 import { assert, assertEquals, assertThrows } from "@std/assert";
 import { describe, it } from "@std/testing/bdd";
+import NodeKinds from "$/constants/NodeKinds.ts";
 import Parser from "$/Parser.ts";
-import NodeKind from "$/constants/NodeKind.ts";
 
 describe("A parser should throw", () => {
   it("when finding an unclosed tag", () => {
@@ -27,7 +27,7 @@ describe("Parser - sample data", () => {
     const nodes = new Parser(sample2).parse();
     assertEquals(nodes.length, 2);
     const [a, b] = nodes;
-    assert(a.kind === NodeKind.OrphanTag && a.isDeclaration);
-    assert(b.kind === NodeKind.RegularTag && b.tagName === "project");
+    assert(a.kind === NodeKinds.OrphanTag && a.isDeclaration);
+    assert(b.kind === NodeKinds.RegularTag && b.tagName === "project");
   });
 });

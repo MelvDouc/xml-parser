@@ -1,6 +1,6 @@
 import { assertEquals, assertFalse } from "@std/assert";
 import { describe, it } from "@std/testing/bdd";
-import NodeKind from "$/constants/NodeKind.ts";
+import NodeKind from "./constants/NodeKinds.ts";
 import { parseOpeningTag } from "$/parse-tag.ts";
 
 describe("parseOpeningTag", () => {
