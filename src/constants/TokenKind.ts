@@ -1,4 +1,4 @@
-enum TokenKind {
+const enum TokenKind {
   Bad,
   Text,
   Comment,
