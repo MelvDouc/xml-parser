@@ -31,7 +31,7 @@ export type Token = NonEndingToken | EndOfInputToken;
 // NODE
 // ===== ===== ===== ===== =====
 
-interface TagNode {
+export interface TagNode {
   /**
    * The local name of the element as it appears in the source input.
    */
