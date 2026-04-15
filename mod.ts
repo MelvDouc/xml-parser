@@ -5,6 +5,7 @@ export type {
   CommentNode,
   NonEndingToken,
   OrphanTagNode,
+  ParserOptions,
   RegularTagNode,
   TextNode,
   XmlNode

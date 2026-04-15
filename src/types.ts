@@ -94,3 +94,15 @@ export type XmlNode =
   | TextNode
   | CommentNode
   | BadNode;
+
+// ===== ===== ===== ===== =====
+// PARSER
+// ===== ===== ===== ===== =====
+
+export type ParserOptions = {
+  /**
+   * Whether to trim text nodes.
+   * @default false
+   */
+  trim?: boolean;
+};

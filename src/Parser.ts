@@ -2,16 +2,24 @@ import NodeKinds from "$/constants/NodeKinds.ts";
 import TokenKind from "$/constants/TokenKind.ts";
 import Lexer from "$/Lexer.ts";
 import { parseOpeningTag, parseOrphanTag } from "$/parse-tag.ts";
-import type { NonEndingToken, RegularTagNode, Token, XmlNode } from "$/types.ts";
+import type {
+  NonEndingToken,
+  ParserOptions,
+  RegularTagNode,
+  Token,
+  XmlNode
+} from "$/types.ts";
 
 /**
  * A class tasked with creating nodes out of the tokens found in a given input string.
  */
 export default class Parser {
   private readonly tokens: Token[];
+  private readonly options: ParserOptions;
 
-  public constructor(input: string) {
+  public constructor(input: string, options: ParserOptions) {
     this.tokens = [...new Lexer(input).lex()];
+    this.options = options;
   }
 
   /**
@@ -95,7 +103,9 @@ export default class Parser {
    * Add a new text token to the current parent if the text isn't just whitespace.
    */
   private handleTextToken(token: NonEndingToken, parent: RegularTagNode): void {
-    const value = token.value.trim();
+    const value = this.options.trim
+      ? token.value.trim()
+      : token.value;
 
     if (value)
       parent.children.push({ kind: NodeKinds.Text, value });
