@@ -116,7 +116,7 @@ export default class Lexer {
 
     const value = this.scanWhile(Lexer.isComment);
     return value.endsWith(COMMENT_END)
-      ? Lexer.createToken(TokenKind.Comment, value, position)
+      ? Lexer.createToken(TokenKind.Comment, value.slice(0, value.length - 3), position)
       : Lexer.createToken(TokenKind.Bad, COMMENT_START + value, position);
   }
 
