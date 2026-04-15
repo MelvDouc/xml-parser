@@ -7,6 +7,7 @@ export type {
   OrphanTagNode,
   ParserOptions,
   RegularTagNode,
+  TagNode,
   TextNode,
   XmlNode
 } from "$/types.ts";
